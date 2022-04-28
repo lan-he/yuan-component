@@ -24,7 +24,8 @@ let routes = [
 ]
 // 路由器
 const router = createRouter({
-    history: process.env.NODE_ENV == 'development' ? createWebHistory() : createWebHashHistory(), // HTML5模式
+    // history: process.env.NODE_ENV == 'development' ? createWebHistory() : createWebHashHistory(),
+    history: createWebHashHistory(),
     routes,
 })
 export default router
