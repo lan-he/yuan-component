@@ -6,14 +6,14 @@ defineProps({
 })
 
 const count = ref(0)
+import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
-    <button type="button" @click="count++">count is: {{ count }}</button>
-    <p>
-        Edit
-        <code>components/HelloWorld.vue</code> to test hot module replacement.
-    </p>
+    HOME
+    <h1>{{ msg }}</h1>
+    <img alt="Vue logo" src="@/assets/logo.png" />
+    <HelloWorld msg="Hello Vue 3 + Vite" />
 </template>
 
 <style scoped>
