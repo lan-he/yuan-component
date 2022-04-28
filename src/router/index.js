@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 // 路由信息
 let routes = [
     {
@@ -24,7 +24,7 @@ let routes = [
 ]
 // 路由器
 const router = createRouter({
-    history: createWebHistory(), // HTML5模式
+    history: process.env.NODE_ENV == 'development' ? createWebHistory() : createWebHashHistory(), // HTML5模式
     routes,
 })
 export default router
