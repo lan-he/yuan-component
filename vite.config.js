@@ -12,5 +12,9 @@ export default defineConfig({
     build: {
         outDir: 'docs',
     },
+    server: {
+        open: true,
+    },
+    base: '/yuan-component/',
     plugins: [vue()],
 })

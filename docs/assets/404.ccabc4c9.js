@@ -1,0 +1,1 @@
+import{_,r}from"./index.27db2e72.js";import"../../../at.alicdn.com/t/font_3366524_oz3yr0ggm4.js";const e={props:{msg:String},setup(t){return r(0),(s,p)=>"404"}};var c=_(e,[["__scopeId","data-v-052b70c5"]]);export{c as default};
