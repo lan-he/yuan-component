@@ -7,7 +7,6 @@ defineProps({
 <template>
     HOME
     <h1>{{ msg }}</h1>
-    <img alt="Vue logo" src="@/assets/logo.png" />
 </template>
 
 <style scoped>
