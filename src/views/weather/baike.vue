@@ -19,7 +19,7 @@ const chaxun = () => {
 
 <template>
     <div class="weather-box">
-        <div class="weather-item" v-for=""></div>
+        <div class="weather-item"></div>
     </div>
     <input type="text" v-model="input1" />
     <button @click="chaxun">查询</button>

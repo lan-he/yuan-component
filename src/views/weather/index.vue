@@ -21,7 +21,11 @@ const queryWeather = () => {
 
 <template>
     <video class="video-background" autoplay loop muted>
-        <source src="http://rb3neenbz.hn-bkt.clouddn.com/nongfushanquan.mp4" type="video/mp4" />
+        <source src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/晴空万里.mp4" type="video/mp4" />
+        <!-- <source
+            src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/yuan-component-nongfushanquan.mp4"
+            type="video/mp4"
+        /> -->
     </video>
     <div class="weather-box">
         <div class="weather-query-block">
