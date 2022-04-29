@@ -34,7 +34,7 @@ const routerPush = (path) => {
             <svg class="icon logo-svg" aria-hidden="true">
                 <use xlink:href="#icon-food-doughnut"></use>
             </svg>
-            <span class="logo-title">Ant Design</span>
+            <span class="logo-title">Zhang Siyuan</span>
             <i class="logo-line"></i>
         </div>
         <div class="header-box-block">

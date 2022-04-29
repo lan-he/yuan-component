@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { jsonp } from 'vue-jsonp'
 defineProps({
     msg: String,
 })
 const count = ref(0)
 
 const oScript = document.createElement('script')
-oScript.src = `https://baike.baidu.com/api/openapi/BaikeLemmaCardApi?appid=379020&bk_key=石榴&callback=getResultList`
+oScript.src = `https://j.i8tq.com/weather2020/search/city.js`
 document.body.appendChild(oScript)
 const oScript1 = document.createElement('script')
 oScript1.innerHTML = `

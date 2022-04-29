@@ -1,5 +1,5 @@
 {
-    "name": "vite-vue3",
+    "name": "yuan-component",
     "private": true,
     "version": "0.0.0",
     "scripts": {
@@ -10,6 +10,7 @@
     "dependencies": {
         "less": "^4.1.2",
         "vue": "^3.2.25",
+        "vue-jsonp": "^2.0.0",
         "vue-router": "4"
     },
     "devDependencies": {

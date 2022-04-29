@@ -6,13 +6,13 @@ import Header from '@/components/header.vue'
 
 <template>
     <Header />
-    <router-link to="/">Go to Home</router-link>
-    <router-link to="/about">Go to About</router-link>
-    <router-view></router-view>
+    <div class="main-wrapper">
+        <router-view></router-view>
+    </div>
 </template>
 
 <style>
-@import '//at.alicdn.com/t/font_3366524_c2aiduiymxr.css';
+@import './assets/iconfont/iconfont.css';
 * {
     margin: 0;
 }
@@ -22,5 +22,10 @@ import Header from '@/components/header.vue'
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
+}
+.main-wrapper {
+    position: relative;
+    padding: 40px 0 0;
+    background: #fff;
 }
 </style>
