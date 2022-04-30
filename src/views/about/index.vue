@@ -20,7 +20,6 @@ document.body.appendChild(oScript1)
 
 <template>
     ABOUT
-    <img src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/img1.jpeg" alt="" />
     <h1>{{ msg }}</h1>
 </template>
 

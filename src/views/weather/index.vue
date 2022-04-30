@@ -3,43 +3,105 @@ import { jsonp } from 'vue-jsonp'
 import { ref, reactive, toRefs } from 'vue'
 
 const state = reactive({
-    address: '哈尔滨',
+    address: '',
     baikeData: {},
-    buttonAnmition: false,
+    weatherOfDay: {},
 })
-const queryWeather = () => {
-    state.buttonAnmition = true
-
-    jsonp('https://query.asilu.com/weather/weather/', {
+const queryWeather = async () => {
+    // 查询10日天气
+    const res = await jsonp('https://query.asilu.com/weather/weather/', {
         address: state.address,
-    }).then((res) => {
-        state.baikeData = res
-        console.log(res, 'QQQQQQQ')
     })
+    state.baikeData = res
+    state.baikeData.list.shift()
+    console.log(res, 'QQQQQQQ')
+}
+queryWeather()
+
+jsonp('https://restapi.amap.com/v3/weather/weatherInfo?parameters', {
+    key: '1b5a649214eebdc30e7a048000104d5f',
+    city: '310000',
+    extensions: 'base',
+}).then((res) => {
+    state.weatherOfDay = res.lives[0]
+    console.log(res, 'ssss')
+})
+const weatherIcon = (code) => {
+    if (code === '00') {
+        // 晴
+        return {
+            iconClass: 'icon-qing',
+        }
+    } else if (code == '01') {
+        // 多云
+        return {
+            iconClass: 'icon-duoyun-3',
+        }
+    } else if (code === '02') {
+        // 阴
+        return {
+            iconClass: 'icon-duoyun',
+        }
+    } else if (code === '03') {
+        // 阵雨
+        return {
+            iconClass: 'icon-zhenyu',
+        }
+    } else if (code === '06') {
+        // 雨夹雪
+        return {
+            iconClass: 'icon-yujiaxue',
+        }
+    } else if (code === '07') {
+        // 小雨
+        return {
+            iconClass: 'icon-xiaoyu',
+        }
+    } else if (code === '14') {
+        // 小雪
+        return {
+            iconClass: 'icon-xiaoxue',
+        }
+    } else if (code === '301') {
+        // 雨
+        return {
+            iconClass: 'icon-zhongyu',
+        }
+    } else {
+        return {
+            iconClass: 'icon-qing',
+        }
+    }
 }
 </script>
 
 <template>
     <video class="video-background" autoplay loop muted>
         <source src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/晴空万里.mp4" type="video/mp4" />
-        <!-- <source
-            src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/yuan-component-nongfushanquan.mp4"
-            type="video/mp4"
-        /> -->
     </video>
     <div class="weather-box">
+        <div class="current-weather">
+            <p class="city-title">{{ state.weatherOfDay.province }}</p>
+            <p class="city-temperature">{{ state.weatherOfDay.temperature }}℃</p>
+            <p class="city-winddirection">
+                {{ state.weatherOfDay.weather }}
+                {{ state.weatherOfDay.winddirection }}风{{ state.weatherOfDay.windpower }}级
+            </p>
+        </div>
+        <div class="weather-item-box">
+            <div class="weather-item" v-for="item in state.baikeData.list">
+                <p class="weather-item-data">{{ item.date }}</p>
+                <svg class="icon weather-icon" aria-hidden="true">
+                    <use :xlink:href="`#${weatherIcon(item.icon2).iconClass}`"></use>
+                </svg>
+                <p class="weather-icon-temp">{{ item.temp }}</p>
+            </div>
+        </div>
         <div class="weather-query-block">
             <input class="" type="text" v-model="state.address" />
             <button class="query-button" @click="queryWeather" :class="{ animation: state.buttonAnmition }">
                 查询
             </button>
-        </div>
-        <div class="weather-item-box">
-            <div class="weather-item" v-for="item in state.baikeData.list">
-                <span>{{ item.date }}</span>
-                <span>{{ item.weather }}</span>
-                <span>{{ item.temp }}</span>
-            </div>
         </div>
     </div>
 </template>
@@ -58,10 +120,31 @@ const queryWeather = () => {
     // -webkit-filter: grayscale(100%);
     // filter: grayscale(100%); //背景灰度设置
 }
+.current-weather {
+    .city-title {
+        font-size: 36px;
+        color: #fff;
+        text-align: center;
+        text-shadow: rgb(0 0 0 / 30%) 2px 2px 6px;
+    }
+    .city-temperature {
+        font-size: 66px;
+        color: #fff;
+        text-align: center;
+        text-shadow: rgb(0 0 0 / 30%) 2px 2px 6px;
+    }
+    .city-winddirection {
+        font-size: 26px;
+        color: #fff;
+        text-align: center;
+        text-shadow: rgb(0 0 0 / 30%) 2px 2px 6px;
+    }
+}
 .weather-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     .weather-query-block {
         display: flex;
         input {
@@ -111,31 +194,37 @@ const queryWeather = () => {
             font-size: 14px;
             border-radius: 2px;
         }
-        .animation {
-            &:after {
-                position: absolute;
-                display: block;
-                border-radius: inherit;
-                box-shadow: 0 0 0 0 #1890ff;
-                opacity: 0.2;
-                animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1),
-                    waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
-                animation-fill-mode: forwards;
-                content: '';
-                pointer-events: none;
-            }
-        }
     }
     .weather-item-box {
         position: relative;
         border-radius: 50px;
         margin-top: 20px;
+        width: 500px;
+        border-radius: 20px;
+        background: rgba(80, 175, 240, 0.1);
+        backdrop-filter: blur(24px);
+        padding: 20px;
         .weather-item {
             height: 40px;
             padding: 0 6px;
-            border-top: 1px solid #999;
+            border-top: 1px solid #779abf;
             display: flex;
             align-items: center;
+            display: flex;
+
+            .weather-item-data {
+                width: 160px;
+                color: #fff;
+                font-size: 20px;
+                text-shadow: rgb(0 0 0 / 40%) 0px 1px 3px;
+            }
+            .weather-icon {
+                width: 34px;
+                height: 34px;
+            }
+            .weather-icon-temp {
+                margin-left: auto;
+            }
         }
     }
 }
