@@ -11,16 +11,16 @@ let routes = [
         component: () => import('@/views/home.vue'),
     },
     {
-        path: '/weather',
-        name: 'weather',
-        component: () => import('@/views/weather/index.vue'),
+        path: '/weather-api',
+        name: 'weather-api',
+        component: () => import('@/views/weather-api.vue'),
     },
     {
-        path: '/about',
-        name: 'about',
-        component: () => import('@/views/about/index.vue'),
+        path: '/wiki-api',
+        name: 'wiki-api',
+        component: () => import('@/views/wiki-api.vue'),
     },
-    { path: '/:pathMatch(.*)*', name: 'notfound', component: () => import('@/views/common/404.vue') },
+    { path: '/:pathMatch(.*)*', name: 'notfound', component: () => import('@/views/not-found.vue') },
 ]
 // 路由器
 const router = createRouter({

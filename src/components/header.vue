@@ -12,15 +12,15 @@ const navList = [
     },
     {
         name: '天气',
-        path: '/weather',
+        path: '/weather-api',
     },
     {
-        name: '资源',
-        path: '/homea',
+        name: '百科',
+        path: '/wiki-api',
     },
     {
         name: '关于',
-        path: '/about',
+        path: '/weather-api',
     },
 ]
 const routerPush = (path) => {
@@ -40,7 +40,8 @@ const routerPush = (path) => {
         <div class="header-box-block">
             <div
                 class="navigation-bar"
-                v-for="item in navList"
+                v-for="(item, index) in navList"
+                :key="index"
                 :class="{ active: route.path == item.path }"
                 @click="routerPush(item.path)"
             >
