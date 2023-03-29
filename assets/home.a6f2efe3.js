@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as s,a as _,t as o,F as r,b as c}from"./index.b7355283.js";const n=c(" HOME "),l={props:{msg:String},setup(e){return(p,m)=>(a(),s(r,null,[n,_("h1",null,o(e.msg),1)],64))}};var d=t(l,[["__scopeId","data-v-036b553a"]]);export{d as default};
