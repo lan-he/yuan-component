@@ -1,1 +1,0 @@
-import{_ as a,o as s,c as o,a as n,t as _,F as c,b as r}from"./index.270f3de2.js";const p=r(" HOME "),i={props:{msg:String},setup(t){return fetch("https://v.api.aa1.cn/api/api-tianqi-4/?id=101060101").then(e=>e.json()).then(e=>console.log(e)),(e,l)=>(s(),o(c,null,[p,n("h1",null,_(t.msg),1)],64))}};var h=a(i,[["__scopeId","data-v-58dbc061"]]);export{h as default};
