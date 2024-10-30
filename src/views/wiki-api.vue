@@ -18,14 +18,18 @@ const chaxun = () => {
 </script>
 
 <template>
-    <div>
+    <div class="s_ipt_box">
         <input class="s_ipt" @focus="onFocus" />
         <input type="submit" value="百度一下" class="s_btn" />
     </div>
-    {{ state.baikeInputValue }} {{ state.baikeData }}
 </template>
 
 <style scoped>
+.s_ipt_box {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
 .s_ipt {
     width: 512px;
     height: 16px;

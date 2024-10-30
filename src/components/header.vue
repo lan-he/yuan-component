@@ -20,7 +20,7 @@ const navList = [
     },
     {
         name: '关于',
-        path: '/weather-api',
+        path: '/about',
     },
 ]
 const routerPush = (path) => {
@@ -57,7 +57,6 @@ const routerPush = (path) => {
     position: relative;
     z-index: 10;
     max-width: 100%;
-    background: #fff;
     box-shadow: 0 2px 8px #f0f1f2;
     height: 64px;
     display: flex;

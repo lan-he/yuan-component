@@ -14,6 +14,7 @@ const queryWeather = async () => {
     })
     state.baikeData = res
     state.baikeData.list.shift()
+    state.weatherOfDay = res.list[0]
     console.log(res, 'QQQQQQQ')
 }
 queryWeather()
@@ -23,7 +24,9 @@ jsonp('https://restapi.amap.com/v3/weather/weatherInfo?parameters', {
     city: '310000',
     extensions: 'base',
 }).then((res) => {
-    state.weatherOfDay = res.lives[0]
+    console.log(res, 'res.livesres.lives')
+
+    state.weatherOfDay = res.list[0]
     console.log(res, 'ssss')
 })
 const weatherIcon = (code) => {
@@ -77,29 +80,39 @@ const weatherIcon = (code) => {
 
 <template>
     <video class="video-background" autoplay loop muted>
-        <source src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/晴空万里.mp4" type="video/mp4" />
+        <source
+            src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/yuan-component/%E6%99%B4%E7%A9%BA%E4%B8%87%E9%87%8C.mp4"
+            type="video/mp4"
+        />
     </video>
     <div class="weather-box">
         <div class="current-weather">
+            <p class="city-title">{{ state.baikeData.city }}</p>
             <p class="city-title">{{ state.weatherOfDay.province }}</p>
-            <p class="city-temperature">{{ state.weatherOfDay.temperature }}℃</p>
+            <p class="city-temperature">{{ state.weatherOfDay.temp }}</p>
             <p class="city-winddirection">
                 {{ state.weatherOfDay.weather }}
-                {{ state.weatherOfDay.winddirection }}风{{ state.weatherOfDay.windpower }}级
+                {{ state.weatherOfDay.wind }}
             </p>
         </div>
         <div class="weather-item-box">
             <div class="weather-item" v-for="item in state.baikeData.list">
                 <p class="weather-item-data">{{ item.date }}</p>
                 <svg class="icon weather-icon" aria-hidden="true">
-                    <use :xlink:href="`#${weatherIcon(item.icon2).iconClass}`"></use>
+                    <use
+                        :xlink:href="`#${weatherIcon(item.icon2).iconClass}`"
+                    ></use>
                 </svg>
                 <p class="weather-icon-temp">{{ item.temp }}</p>
             </div>
         </div>
-        <div class="weather-query-block">
+        <div class="weather-query-block" v-if="false">
             <input class="" type="text" v-model="state.address" />
-            <button class="query-button" @click="queryWeather" :class="{ animation: state.buttonAnmition }">
+            <button
+                class="query-button"
+                @click="queryWeather"
+                :class="{ animation: state.buttonAnmition }"
+            >
                 查询
             </button>
         </div>
@@ -202,7 +215,7 @@ const weatherIcon = (code) => {
         width: 500px;
         border-radius: 20px;
         background: rgba(80, 175, 240, 0.1);
-        backdrop-filter: blur(24px);
+        backdrop-filter: blur(34px);
         padding: 20px;
         .weather-item {
             height: 40px;

@@ -12,6 +12,6 @@ export default defineConfig({
     server: {
         open: true,
     },
-    base: './',
+    base: '/yuan-component/',
     plugins: [vue()],
 })
