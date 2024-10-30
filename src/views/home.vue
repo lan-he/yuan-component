@@ -7,7 +7,7 @@
         >
             <use xlink:href="#icon-food-doughnut"></use>
         </svg>
-        <span>AAAA</span>
+        <span>AAAAA5</span>
     </div>
 </template>
 <script setup></script>
