@@ -7,10 +7,6 @@ setTimeout(() => {
 }, 100)
 const navList = [
     {
-        name: '首页',
-        path: '/home',
-    },
-    {
         name: '天气',
         path: '/weather-api',
     },

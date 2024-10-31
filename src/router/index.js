@@ -1,14 +1,18 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import {
+    createRouter,
+    createWebHistory,
+    createWebHashHistory,
+} from 'vue-router'
 // 路由信息
 let routes = [
     {
         path: '/',
-        redirect: '/home',
+        redirect: '/weather-api',
     },
     {
-        path: '/home',
-        name: 'home',
-        component: () => import('@/views/home.vue'),
+        path: '/about',
+        name: 'about',
+        component: () => import('@/views/about.vue'),
     },
     {
         path: '/weather-api',
@@ -20,12 +24,17 @@ let routes = [
         name: 'wiki-api',
         component: () => import('@/views/wiki-api.vue'),
     },
-    { path: '/:pathMatch(.*)*', name: 'notfound', component: () => import('@/views/not-found.vue') },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'notfound',
+        component: () => import('@/views/not-found.vue'),
+    },
 ]
 // 路由器
 const router = createRouter({
     // history: process.env.NODE_ENV == 'development' ? createWebHistory() : createWebHashHistory(),
     history: createWebHashHistory(),
+    // history: createWebHistory(),
     routes,
 })
 export default router

@@ -14,6 +14,8 @@ const queryWeather = async () => {
     })
     state.baikeData = res
     state.baikeData.list.shift()
+    console.log(res.list)
+
     state.weatherOfDay = res.list[0]
     console.log(res, 'QQQQQQQ')
 }
@@ -26,7 +28,7 @@ jsonp('https://restapi.amap.com/v3/weather/weatherInfo?parameters', {
 }).then((res) => {
     console.log(res, 'res.livesres.lives')
 
-    state.weatherOfDay = res.list[0]
+    // state.weatherOfDay = res.list[0]
     console.log(res, 'ssss')
 })
 const weatherIcon = (code) => {
@@ -81,7 +83,7 @@ const weatherIcon = (code) => {
 <template>
     <video class="video-background" autoplay loop muted>
         <source
-            src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/yuan-component/%E6%99%B4%E7%A9%BA%E4%B8%87%E9%87%8C.mp4"
+            src="https://hemingxaun-1256953833.cos.ap-shanghai.myqcloud.com/yuan-component/%E7%BB%BF%E8%89%B2%E7%A9%BA%E9%95%9C.mp4"
             type="video/mp4"
         />
     </video>
